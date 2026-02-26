@@ -33,6 +33,9 @@ export default {
           this.userImage = "";
       }
 
+    },
+    deleteUser(index){
+      this.users.splice(index,1)
     }
   }
 }
@@ -55,17 +58,19 @@ export default {
   <div v-else>
     Количество пользователей {{ users.length }}
   </div>
-  <div v-for="user in users" className="user">
+  <div v-for="(user, index) in users" className="user" :key="index">
     <img className="image" :src="user.image" alt="">
       <div className="user_info">
     <h3>Имя:{{ user.name }}</h3>
     <p>Возрас:т{{ user.age }}</p>
     <p>Пароль:{{ user.password }}</p>
     <p>Почта:{{ user.email }}</p>
+  
       </div>
-
+      <button className="btn-remove" @click="deleteUser()">Удалить</button>
 
   </div>
+
 </template>
 
 <style scoped>
@@ -116,6 +121,24 @@ color: red;
   
 }
 
+.btn-remove{
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px 15px;
+  background: #ff0000;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  transform: transform 700ms ease;
+  position: relative;
+  left: 165px;
+  top: 130px;
+  display: block;
+  width: 80px;
+  height: 30px;
+  font-size: 11px;
+}
 
 
 </style>
